@@ -83,7 +83,9 @@ class ProductController extends Controller
             "message" => "product created successfully"
         ], 200);
         
-        return $response;
+        return [
+            "data" => $product
+        ];
     }
 
     /**
