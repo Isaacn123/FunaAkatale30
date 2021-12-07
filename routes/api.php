@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('profile_edit_image', [UserAuthController::class, 'profile_edit_image']); 
     Route::get('/profile',[UserAuthController::class, 'profile']); // done
     Route::post('add_address', [UserAuthController::class, 'add_address']); 
-
+    Route::apiResource('products', ProductController::class);
 
 
     
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 // Route::post('/business', [BusinessController::class, 'store']); 
 
-   Route::apiResource('products', ProductController::class);
+   // Route::apiResource('products', ProductController::class);
 
    Route::group(['prefix' => 'products'], function (){
       Route::apiResource('/{product}/reviews', ReviewController::class);
