@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('profile_edit_image', [UserAuthController::class, 'profile_edit_image']); 
     Route::get('/profile',[UserAuthController::class, 'profile']); // done
     Route::post('add_address', [UserAuthController::class, 'add_address']); 
-    Route::apiResource('products', ProductController::class);
+    Route::post('product', [ProductController::class, 'store']);
 
 
     
