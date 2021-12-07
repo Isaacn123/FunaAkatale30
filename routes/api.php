@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 // Route::post('/business', [BusinessController::class, 'store']); 
 
-   // Route::apiResource('products', ProductController::class);
+    Route::apiResource('products', ProductController::class);
 
    Route::group(['prefix' => 'products'], function (){
       Route::apiResource('/{product}/reviews', ReviewController::class);
