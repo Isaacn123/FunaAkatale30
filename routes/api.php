@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth:api'], function () {
    
 }); 
 
-Route::Resource('/products', ProductController::class);
+Route::Resource('products', ProductController::class);
 
 // Route::get('/business',[BusinessController::class, 'index']); 
 
