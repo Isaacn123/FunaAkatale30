@@ -80,7 +80,7 @@ class UserAuthController extends Controller
          ]);
        }   
          $token = $user->createToken('myuserToken')->plainTextToken;
-        // $token = $user->createToken('myuserToken')->accessToken;
+        //  $token = $user->createToken('myuserToken')->accessToken;
         $response = Response([
             'user' => $user,
             'token' => $token,
