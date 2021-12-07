@@ -75,7 +75,8 @@ class ProductController extends Controller
         $product ->category_id = $request->category_id;
         $product ->subCategory_id = $request->subCategory_id;
         $product ->stock = $request->stock;
-        $product->save();
+        $product = Product::create($request->all());
+        FUNAAKATALE-ECOMMERCE-API
         $response = response([
             "data" => new ProductResource($product), 
             "status" => 'ok',
