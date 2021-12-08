@@ -168,6 +168,9 @@ class UserAuthController extends Controller
         $name = "User_" . time() . ".png";
         $file = public_path('/images/user/') . $name;
         //  echo $file;
+        app()->uploadcare->widget->getInputTag($file);
+
+        app()->uploadcare->widget->getScriptTag();
         $success = file_put_contents($file, $data1);
          $user->image = $name;
 
@@ -178,7 +181,6 @@ class UserAuthController extends Controller
       $response = Response([
         'message' => 'Editing profile has been successfully updated',
         'data' => $user,
-        'd'=>$file,
          "file" => $file,
         "success" => true,
       ], 200);
