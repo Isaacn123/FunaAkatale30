@@ -39,8 +39,8 @@ Route::get('sub_category/{id}', [PostSubCategory::class, 'index']);
 Route::get('business/{category}', [BusinessController::class, 'business']); 
 
 // protected Routes
-//Route::group(['middleware' => 'auth:sanctum'], function () {
-Route::group(['middleware' => 'auth:api'], function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
+// Route::group(['middleware' => 'auth:api'], function () {
     // return $request->user();
    
     Route::post('/business', [BusinessController::class, 'store']);
@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 // Route::post('/business', [BusinessController::class, 'store']); 
 
-    // Route::apiResource('businessproducts', BusinessProductController::class);
+    Route::apiResource('businessproducts', BusinessProductController::class);
     Route::apiResource('products', ProductController::class);
 
    Route::group(['prefix' => 'products'], function (){
