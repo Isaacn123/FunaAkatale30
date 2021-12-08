@@ -10,6 +10,7 @@ use App\Http\Controllers\PostCategory;
 use App\Http\Controllers\PostSubCategory;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BusinessProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 // Route::post('/business', [BusinessController::class, 'store']); 
 
+    // Route::apiResource('businessproducts', BusinessProductController::class);
     Route::apiResource('products', ProductController::class);
 
    Route::group(['prefix' => 'products'], function (){

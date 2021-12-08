@@ -16,13 +16,11 @@ class ProductController extends Controller
 {
    
     public function __construct(){
-    //   $this->middleware('auth:sanctum')->except('index','show');
-      $this->middleware('auth:api')->except('index','show');
+       $this->middleware('auth:sanctum')->except('index','show');
+     // $this->middleware('auth:api')->except('index','show');
 //     // $this->middleware('auth', ['except' => ['index', 'show']]);
 
 //     // Route::group(['middleware' => 'auth'], function () {
-
-
     }
 
 
@@ -35,7 +33,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        // return Product::with('reviews')->get();
+         // return Product::with('reviews')->get();
 
         //  return ProductResource::collection(Product::all());
 
@@ -66,7 +64,7 @@ class ProductController extends Controller
         $product = new Product();
         $user_id = Auth::id();
       
-        // $product = Product::create($request->all());
+      // $product = Product::create($request->all());
         $product ->name = $request->name;
         $product ->user_id = $user_id;
         $product ->description = $request->description;
