@@ -161,7 +161,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        PedZed\LaravelUploadcare\UploadcareServiceProvider::class,
+        // Uploadcare
+        // Illuminate\Html\HtmlServiceProvider::class,
+        Altitude\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,6 +232,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // uploadcare
+        // 'Form' => Illuminate\Html\FormFacade::class,
+        // 'HTML' => Illuminate\Html\HtmlFacade::class,
+        'Uploadcare' => Altitude\LaravelUploadcare\Facades\Uploadcare::class,
 
     ],
 

@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "pedzed/laravel-uploadcare": "^0.2.0"
+        "illuminate/html": "5.*",
+        "altitude/laravel-uploadcare": "~2.0.0"
     },
     
     "require-dev": {
