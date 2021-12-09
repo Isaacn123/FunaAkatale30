@@ -209,7 +209,7 @@ class UserAuthController extends Controller
       $response = Response([
         'message' => 'Editing profile has been successfully updated',
         'data' => $user,
-         "file" => $imagename,
+         "file" => $path,
          "name" => $name,
          "id" => $imageID,
         
