@@ -40,7 +40,8 @@ class User extends Authenticatable
 
     public function getImagePathAttribute()
     {
-        return url('images/user') . '/';
+        // return url('images/user') . '/';
+        return url('https://res.cloudinary.com/ivhfizons/image/upload/v1639074703'). '/';
     }
 
     /**
