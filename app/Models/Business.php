@@ -35,7 +35,9 @@ class Business extends Model
 
     public function getImagePathAttribute()
     {
-        return url('images/business') . '/';
+        // return url('images/business') . '/';
+        return url('https://res.cloudinary.com/ivhfizons/image/upload/v1639074703'). '/';
+    
     }
 
     public function featuredQuery($query)

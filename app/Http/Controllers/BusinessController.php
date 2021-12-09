@@ -114,28 +114,50 @@ class BusinessController extends Controller
         // $product->price = $request->price;
         // $product->service_id = json_encode($request->service_id);
         // $product->status = $request->status;
-        
+        $nameF = "Business_" . time();
         if($request->hasFile('image'))
         {
-            $image = $request->file('image');
-            $name = 'Business_'.time().'.'. $image->getClientOriginalExtension();
-            $destinationPath = public_path('/images/business/logo');
-            $image->move($destinationPath, $name);
-            $businessInfo->image = $name;
+             $image = $request->file('image');
+            // $name = 'Business_'.time().'.'. $image->getClientOriginalExtension();
+            // $destinationPath = public_path('/images/business/logo');
+            // $image->move($destinationPath, $name);
+
+        $result = $request->image->storeOnCloudinaryAs('business', $nameF);
+        $imagename = $result->getFileName();
+        $extension = $result->getExtension();
+
+        $name = $imagename . "." . $extension;
+        $path = $result->getSecurePath();
+        $imageID = $result->getPublicId(); 
+        $businessInfo->image = $name;
+        }
+
+        $nameF = "Featured_" . time();
+        if($request->hasFile('featured_image'))
+        {
+
+          // dd("found");
+         
+          //   $image = $request->file('featured_image');
+          //   $name = 'Business_'.time().'.'. $image->getClientOriginalExtension();
+          //   $destinationPath = public_path('/images/business/featuredImage ');
+          //   $image->move($destinationPath, $name);
+          //   $businessInfo->featured_image = $name;
+
+          $result = $request->featured_image->storeOnCloudinaryAs('featured', $nameF);
+          $imagename = $result->getFileName();
+          $extension = $result->getExtension();
+  
+          $name = $imagename . "." . $extension;
+          $path = $result->getSecurePath();
+          $imageID = $result->getPublicId(); 
+          $businessInfo->featured_image = $name;
         }
 
 
         // $businessInfo ->featured_business = $request-> featured_business;
 
-
-          if($request->hasFile('featured_image'))
-          {
-              $image = $request->file('featured_image');
-              $name = 'Business_'.time().'.'. $image->getClientOriginalExtension();
-              $destinationPath = public_path('/images/business/featuredImage ');
-              $image->move($destinationPath, $name);
-              $businessInfo->featured_image = $name;
-          }
+      
         $businessInfo->save();
 
 
