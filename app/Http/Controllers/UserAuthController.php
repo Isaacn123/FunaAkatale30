@@ -133,55 +133,86 @@ class UserAuthController extends Controller
         ]);
 
       $user = User::find(Auth::user()->id);
-      if(isset($request->image)){
+      // if(isset($request->image)){
+      //   if($user->image != "noimage.jpg")
+      //   {
+      //       if(\File::exists(public_path('/images/user/'. $user->image))){
+      //           \File::delete(public_path('/images/user/'. $user->image));
+      //       }
+      //   }
+
+      //   $img = $request->image;
+      //    // Methods we can use on $request
+      //    // 1 guessExtension() = $test = $request->file($img)->guessExtension()
+      //    // 2 getMimeType() = $test = $request->file($img)->getMimeType()
+      //    // 3 store() = $test = $request->file($img)->store
+      //    // 4 asStores() = $test = $request->file($img)
+      //    // 5 storePublicaly() = $test = $request->file($img)->store
+      //    // 6 move() = $test = $request->file($img)->move
+      //    // 7 getClientOriginalName() = $test = $request->file($img)->getClientOriginal
+      //   // 8 getClientExtension() = $test = $request->file($img)
+      //   //  $test = $request->file('image')->getClientOriginalName();
+
+      //   //  $name = "User_" . time() . '.' .$img->extension();
+      //   //  $file = public_path('/images/user/');
+      //   //  $success = $img->move($file, $name);
+      //   //  $success = file_put_contents($file, $data1);
+      //   // dd($test)
+
+      //   // $img = str_replace('data:image/png;base64,', '', $img);
+       
+
+      //   $img = str_replace(' ', '+', $img);
+       
+      //   $data1 = base64_decode($img);
+      //   $name = "User_" . time() . ".png";
+      //   $file = public_path('/images/user/') . $name;
+      //   $success = file_put_contents($file, $data1);
+      //   $user->image = $name;
+
+
+      // }
+      
+ 
+ /// Uploading image to Cloudinary server 
+         // $response = cloudinary()->upload($request->image->getRealPath())->getSecurePath();
+     
+        // $result = $request->image->storeOnCloudinary();
+        
+        $nameF = "User_" . time();
+
+        if(isset($request->image)){
         if($user->image != "noimage.jpg")
         {
-            if(\File::exists(public_path('/images/user/'. $user->image))){
-                \File::delete(public_path('/images/user/'. $user->image));
+            if(file_exists($user->image)){
+              // unlink('https://res.cloudinary.com/ivhfizons/image/upload/v1639060843/user/'. $user->image);
+              // dd("filed availability tru");
+              // cloudinary.uploader.destroy('sample', function(result) { console.log(result) }); 
+              // Cloudinary::destroy($user->image);
+              // $user->image->destroy();
             }
         }
+      // $res =   Cloudinary::destroy($user->image);
+      //  dd($res);
+        $result = $request->image->storeOnCloudinaryAs('user', $nameF);
+        $imagename = $result->getFileName();
+        $extension = $result->getExtension();
 
-        $img = $request->image;
-         // Methods we can use on $request
-         // 1 guessExtension() = $test = $request->file($img)->guessExtension()
-         // 2 getMimeType() = $test = $request->file($img)->getMimeType()
-         // 3 store() = $test = $request->file($img)->store
-         // 4 asStores() = $test = $request->file($img)
-         // 5 storePublicaly() = $test = $request->file($img)->store
-         // 6 move() = $test = $request->file($img)->move
-         // 7 getClientOriginalName() = $test = $request->file($img)->getClientOriginal
-        // 8 getClientExtension() = $test = $request->file($img)
-        //  $test = $request->file('image')->getClientOriginalName();
-
-        //  $name = "User_" . time() . '.' .$img->extension();
-        //  $file = public_path('/images/user/');
-        //  $success = $img->move($file, $name);
-        //  $success = file_put_contents($file, $data1);
-        // dd($test)
-
-        // $img = str_replace('data:image/png;base64,', '', $img);
-       
-
-        $img = str_replace(' ', '+', $img);
-       
-        $data1 = base64_decode($img);
-        $name = "User_" . time() . ".png";
-        $file = public_path('/images/user/') . $name;
-        //  echo $file;
-        app()->uploadcare->widget->getInputTag($file);
-
-        app()->uploadcare->widget->getScriptTag();
-        $success = file_put_contents($file, $data1);
-         $user->image = $name;
-
+        $name = $imagename . "." . $extension;
+        $path = $result->getSecurePath();
+        $user->image = $name;
+        $imageID = $result->getPublicId();
       }
 
-      $user->save();
+       $user->save();
 
       $response = Response([
         'message' => 'Editing profile has been successfully updated',
         'data' => $user,
-         "file" => $file,
+         "file" => $imagename,
+         "name" => $name,
+         "id" => $imageID,
+        
         "success" => true,
       ], 200);
 

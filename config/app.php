@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Uploadcare
         // Illuminate\Html\HtmlServiceProvider::class,
-        Altitude\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
+        // Altitude\LaravelUploadcare\LaravelUploadcareServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -177,6 +177,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
 
     ],
 
@@ -235,7 +237,8 @@ return [
         // uploadcare
         // 'Form' => Illuminate\Html\FormFacade::class,
         // 'HTML' => Illuminate\Html\HtmlFacade::class,
-        'Uploadcare' => Altitude\LaravelUploadcare\Facades\Uploadcare::class,
+        // 'Uploadcare' => Altitude\LaravelUploadcare\Facades\Uploadcare::class,
+        'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
 
     ],
 
