@@ -84,21 +84,21 @@ class CategoryController extends Controller
         // $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
         // dd($response);
 
-        if($request->hasFile('file')){
+    //     if($request->hasFile('file')){
 
-    // $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
-    // dd($response);
+    // // $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+    // // dd($response);
 
-            $result = $request->file('image')->storeOnCloudinaryAs('category', $nameF);
-            $imagename = $result->getFileName();
-            $extension = $result->getExtension();
+    //         $result = $request->file('image')->storeOnCloudinaryAs('category', $nameF);
+    //         $imagename = $result->getFileName();
+    //         $extension = $result->getExtension();
             
-            $name = $imagename . "." . $extension;
-            $path = $result->getSecurePath();
-            dd($path);
-            $imageID = $result->getPublicId(); 
-            $category->featured_image = $name;
-        }
+    //         $name = $imagename . "." . $extension;
+    //         $path = $result->getSecurePath();
+    //         dd($path);
+    //         $imageID = $result->getPublicId(); 
+    //         $category->featured_image = $name;
+    //     }
        
         $category->save();
 
