@@ -29,7 +29,7 @@
       width:100%;
     }
     </style>
-    @cloudinaryJS
+    <!-- @cloudinaryJS -->
   </head>
   <body>
     <div class="container-scroller" id="admin">
