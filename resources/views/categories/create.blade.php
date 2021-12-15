@@ -37,7 +37,7 @@
    @endif
 
 
-       <form action="{{ isset($category) ? route('category.update', $category->id) : route('category.store')}}" method="post" >
+       <form action="{{ isset($category) ? route('category.update', $category->id) : route('category.store')}}" method="POST" >
        <!-- @csrf -->
        @csrf
          @if(isset($category))
@@ -55,6 +55,14 @@
          <div class="form-group">
              <label for="slug">Slug</label>
              <input type="text" id="slug" value="{{isset($category) ? $category->slug : ''}}" name="slug" class="form-control">
+         </div>
+
+         <div class="form-group">
+             <label for="">Featured_image</label>
+             <x-cld-upload-button>
+            Upload Files
+            </x-cld-upload-button>
+            <!-- <input type="file" name="image" class="form-control"/> -->
          </div>
         <div class="form-group mt-2">
          <button  class="btn btn-success" >

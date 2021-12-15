@@ -70,12 +70,37 @@ class CategoryController extends Controller
 
         @session()->flash('success', 'Success! You have successfully created your Category.');
 
-        Category::create(
-            [
-                'name' => $request->name,
-                'slug' => $request->slug,
-        ], 201);
+        // Category::create(
+        //     [
+        //         'name' => $request->name,
+        //         'slug' => $request->slug,
+        // ], 201);
 
+        $category = new Category(); 
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $nameF = "Category_" . time();
+
+        // $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+        // dd($response);
+
+        if($request->hasFile('file')){
+
+    // $response = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+    // dd($response);
+
+            $result = $request->file('image')->storeOnCloudinaryAs('category', $nameF);
+            $imagename = $result->getFileName();
+            $extension = $result->getExtension();
+            
+            $name = $imagename . "." . $extension;
+            $path = $result->getSecurePath();
+            dd($path);
+            $imageID = $result->getPublicId(); 
+            $category->featured_image = $name;
+        }
+       
+        $category->save();
 
    //  return view('categories.index');
   return  redirect()->route('category.index');

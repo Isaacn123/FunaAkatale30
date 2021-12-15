@@ -144,7 +144,7 @@ class BusinessController extends Controller
           //   $image->move($destinationPath, $name);
           //   $businessInfo->featured_image = $name;
 
-          $result = $request->featured_image->storeOnCloudinaryAs('featured', $nameF);
+          $result    = $request->featured_image->storeOnCloudinaryAs('featured', $nameF);
           $imagename = $result->getFileName();
           $extension = $result->getExtension();
   
